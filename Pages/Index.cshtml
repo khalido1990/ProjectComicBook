@@ -5,6 +5,18 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Lijst van stripboeken en auteurs</h1>
+</div>
+<div>
+    <ul>
+        @foreach (var comicBook in Model.ComicBooks) {
+            <li>ID: @comicBook.comicbookID -- Stripboek: @comicBook.titel -- Aantal blz.: @comicBook.pages</li>
+        }
+    </ul>
+    
+    <ul>
+        @foreach (var author in Model.Authors) {
+            <li>ID: @author.authorID, Naam: @author.name, Omschrijving: @author.description</li>
+        }
+    </ul>
 </div>
