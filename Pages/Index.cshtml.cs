@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using ProjectComicBook.Models;
 
 public class IndexModel : PageModel
 {
@@ -11,5 +12,11 @@ public class IndexModel : PageModel
         _logger = logger;
     }
 
-    public void OnGet() { }
+    public IEnumerable<dynamic> ComicBooks{ get; set; }
+    public IEnumerable<dynamic> Authors{ get; set; }
+    public void OnGet()
+    {
+        ComicBooks = new DatabaseHandler().GetAllComicBooks();
+        Authors = new DatabaseHandler().GetAllAuthors();
+    }
 }
