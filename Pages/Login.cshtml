@@ -14,6 +14,13 @@
 <body>
 <div>
     
+    <form method="post">
+        <div asp-validation-summary="All"></div>
+        <input type="text" name="UserName" id="UserName" asp-for="UserName">
+        <input type="password" name="Password" id="Password" asp-for="Password">
+        <button type="submit" value="log" asp-page-handler="login">Login</button>
+        <button type="submit" value="reg" asp-page-handler="reg">Register</button>
+    </form>
 </div>
 </body>
 </html>
