@@ -1,0 +1,21 @@
+﻿@page
+@model ProjectComicBook.Pages.auteurs
+
+@{
+    ViewData["Title"] = "Author page";
+}
+
+<div>
+    <form method="post" asp-page-handler="AddAuthor">
+        <div class="mb-3">
+            <label for="authorName" class="form-label">Auteur</label>
+            <input type="text" class="form-control" id="authorName" name="authorName" aria-describedby="emailHelp" required>
+          </div>
+          <div class="mb-3">
+            <label for="authorDescription" class="form-label">Omschrijving</label>
+            <input type="text" class="form-control" id="authorDescription" name="authorDescription" aria-describedby="authorDescriptionHelp">
+            <div id="authorDescriptionHelp" class="form-text">Korte beschrijving van de auteur</div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

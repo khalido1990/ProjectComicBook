@@ -28,5 +28,12 @@ namespace ProjectComicBook.Models
             using var connection = Connect();
             connection.Execute("DELETE FROM author WHERE authorID = @authorID", new {authorID});
         }
+        
+        public void AddAuthor(string name, string description)
+        {
+            using var connection = Connect(); 
+            connection.Execute("INSERT INTO author (name, description) values (@name, @description)"
+                , new {name, description});
+        }
     }
 }
