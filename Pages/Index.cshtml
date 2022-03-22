@@ -6,7 +6,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <h1 class="display-4">Lijst van stripboeken en auteurs</h1>
+    <h1 class="display-4">Lijst van stripboeken, auteurs, tekenaars.</h1>
 </div>
 <div>
     <label>Stripboeken</label>
@@ -25,4 +25,11 @@
             <li>ID: @author.authorID, Naam: @author.name, Omschrijving: @author.description</li>
         }
     </ul>
+    <label>Tekenaars</label>
+        <ul>
+            @foreach (var illustrator in Model.Illustrators)
+            {
+                <li>ID: @illustrator.authorID, Naam: @illustrator.name, Omschrijving: @illustrator.description</li>
+            }
+        </ul>
 </div>

@@ -14,9 +14,12 @@ public class IndexModel : PageModel
 
     public IEnumerable<dynamic> ComicBooks{ get; set; }
     public IEnumerable<dynamic> Authors{ get; set; }
+    public IEnumerable<dynamic> Illustrators { get; set; }
+
     public void OnGet()
     {
         ComicBooks = new DatabaseHandler().GetAllComicBooks();
         Authors = new DatabaseHandler().GetAllAuthors();
+        Illustrators = new DatabaseHandler().GetAllIllustrators();
     }
 }

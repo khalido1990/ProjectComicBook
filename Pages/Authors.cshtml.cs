@@ -4,7 +4,7 @@ using ProjectComicBook.Models;
 
 namespace ProjectComicBook.Pages
 {
-    public class auteurs : PageModel
+    public class Authors : PageModel
     {
         private DatabaseHandler DatabaseHandler = new DatabaseHandler();
         public void OnGet()

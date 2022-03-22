@@ -4,7 +4,7 @@ using ProjectComicBook.Models;
 
 namespace ProjectComicBook.Pages
 {
-    public class Stripboeken : PageModel
+    public class Comicbooks : PageModel
     {
         private readonly DatabaseHandler DatabaseHandler = new DatabaseHandler();
 
