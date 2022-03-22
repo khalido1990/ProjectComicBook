@@ -22,6 +22,8 @@ namespace ProjectComicBook.Models
             using var connection = Connect();
             return connection.Query("SELECT * FROM author");
         }
+        
+        
 
         public void DeleteAuthor(int authorID)
         {
@@ -42,6 +44,18 @@ namespace ProjectComicBook.Models
             connection.Execute("INSERT INTO comicbook(serie_ID, authorID, illustratorID, titel, description, isbn, release_date, type, pages) values (@serie_ID, @authorID, @illustratorID, @title, @descriptionComic, @isbn, @releaseDate, @type, @pages )" 
                 , new {serie_ID, authorID, illustratorID, title, descriptionComic, isbn, releaseDate, type, pages});
         }
-    }
+        
+        public void AddIllustrator(string name, string description)
+        {
+            using var connection = Connect(); 
+            connection.Execute("INSERT INTO illustrator (name, description) values (@name, @description)"
+                , new {name, description});
+        }
+        
+        public IEnumerable<dynamic> GetAllIllustrators()
+        {
+            using var connection = Connect();
+            return connection.Query("SELECT * FROM illustrator");
+        }    }
     
 }

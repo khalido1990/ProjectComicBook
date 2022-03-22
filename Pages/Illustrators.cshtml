@@ -1,6 +1,21 @@
 ﻿@page
-@model ProjectComicBook.Pages.tekenaars
+@model ProjectComicBook.Pages.Illustrators
 
 @{
     ViewData["Title"] = "Illustrator page";
 }
+
+<div>
+    <form method="post" asp-page-handler="AddIllustrator">
+        <div class="mb-3">
+            <label for="illustratorName" class="form-label">Tekenaar</label>
+            <input type="text" class="form-control" id="illustratorName" name="illustratorName" aria-describedby="emailHelp" required>
+        </div>
+        <div class="mb-3">
+            <label for="illustratorDescription" class="form-label">Omschrijving</label>
+            <input type="text" class="form-control" id="illustratorDescription" name="illustratorDescription" aria-describedby="illustratorDescriptionHelp">
+            <div id="IllustratorDescriptionHelp" class="form-text">Korte beschrijving van de tekenaar</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
