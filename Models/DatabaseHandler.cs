@@ -35,5 +35,13 @@ namespace ProjectComicBook.Models
             connection.Execute("INSERT INTO author (name, description) values (@name, @description)"
                 , new {name, description});
         }
+
+        public void AddComic(int serie_ID, int authorID, int illustratorID, string title, string descriptionComic, string isbn, string releaseDate, string type, string pages)
+        {
+            using var connection = Connect();
+            connection.Execute("INSERT INTO comicbook(serie_ID, authorID, illustratorID, titel, description, isbn, release_date, type, pages) values (@serie_ID, @authorID, @illustratorID, @title, @descriptionComic, @isbn, @releaseDate, @type, @pages )" 
+                , new {serie_ID, authorID, illustratorID, title, descriptionComic, isbn, releaseDate, type, pages});
+        }
     }
+    
 }

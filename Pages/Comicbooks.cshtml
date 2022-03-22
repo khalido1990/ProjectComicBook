@@ -2,8 +2,55 @@
 @model ProjectComicBook.Pages.Stripboeken
 
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Comic book page";
 }
 <div>
     <h1 class="text-center">Stripboeken</h1>
+    <form method="post" asp-page-handler="AddComic">
+        <div class="mb-3">
+            <div>
+                <label for="title" class="form-label">Titel</label>
+                <input class="form-control" required type="text" name="title" id="title"/>
+            </div>
+            <br/>
+            <div>
+                <label for="releaseDate" class="form-label">Publicatiedatum</label>
+                <input class="form-control" required type="date" name="releaseDate" id="releaseDate"/>
+            </div>
+            <br/>
+            <div>
+                <label for="cover" class="form-label">Voorkant</label>
+                <input class="form-control" type="file" name="cover" id="cover"/>
+            </div>
+            <br/>
+            <div>
+                <label for="pages" class="form-label">Bladzijden</label>
+                <input class="form-control" required type="text" name="pages" id="pages"/>
+            </div>
+            <br/>
+            <div>
+                <label for="isbn" class="form-label">ISBN</label>
+                <input class="form-control" id="isbn" name="isbn" type="number" maxlength="13"/>
+            </div>
+            <br/>
+            <div>
+                <label for="type" class="form-label">Type</label>
+                <select class="form-control" name="type" id="type">
+                    <option value="physical">Fysiek</option> <option value="digital">Digitaal</option>
+                </select>
+            </div>
+            <br/>
+            <div>
+                <label for="descriptionComic" class="form-label">Omschrijving</label>
+                <textarea class="form-control" rows="10" cols="40" name="descriptionComic" id="descriptionComic" maxlength="255"></textarea>
+            </div>
+            <br/>
+            <div>
+                <label class="form-label" for="explicit" >Expliciet</label>
+                <input name="explicit"  id="explicit" type="checkbox"/>
+            </div>
+            <br/>
+            <button type="submit" class="btn btn-primary">Opslaan</button>
+        </div>
+    </form>
 </div>
