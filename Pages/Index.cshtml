@@ -9,14 +9,19 @@
     <h1 class="display-4">Lijst van stripboeken en auteurs</h1>
 </div>
 <div>
+    <label>Stripboeken</label>
     <ul>
-        @foreach (var comicBook in Model.ComicBooks) {
-            <li>ID: @comicBook.comicbookID -- Stripboek: @comicBook.titel -- Aantal blz.: @comicBook.pages</li>
+        @foreach (var comicBook in Model.ComicBooks)
+        {
+            <li>ID: @comicBook.comicbookID -- Stripboek: @comicBook.titel -- Aantal blz.: @comicBook.pages -- Beschijving: @comicBook.description</li>
+            <br/>
         }
     </ul>
-    
+
+    <label>Auteurs</label>
     <ul>
-        @foreach (var author in Model.Authors) {
+        @foreach (var author in Model.Authors)
+        {
             <li>ID: @author.authorID, Naam: @author.name, Omschrijving: @author.description</li>
         }
     </ul>
