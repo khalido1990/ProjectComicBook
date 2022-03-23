@@ -1,0 +1,110 @@
+@page
+@model ProjectComicBook.Pages.UpdateComicbooks
+
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lijst van stripboeken om te bewerken.</h1>
+</div>
+<div>
+    <label>Stripboeken</label>
+    <ul>
+        @foreach (var comicbook in Model.Comicbooks)
+        {
+            <li>
+                @comicbook.comicbookID, @comicbook.name, @comicbook.description
+                <!-- update comicbook -->
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#idE-@comicbook.comicbookID">
+                    Aanpassen
+                </button>
+                
+                <div class="modal fade" id="idE-@comicbook.comicbookID" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Let op</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form method="post" asp-page-handler="UpdateComicbook">
+                                <div class="modal-body">
+                                    <div>
+                                        <label for="title" class="form-label">Titel</label>
+                                        <input class="form-control" required type="text" name="title" id="title"/>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="releaseDate" class="form-label">Publicatiedatum</label>
+                                        <input class="form-control" required type="date" name="releaseDate" id="releaseDate"/>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="cover" class="form-label">Voorkant</label>
+                                        <input class="form-control" type="file" name="cover" id="cover"/>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="pages" class="form-label">Bladzijden</label>
+                                        <input class="form-control" required type="text" name="pages" id="pages"/>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="isbn" class="form-label">ISBN</label>
+                                        <input class="form-control" id="isbn" name="isbn" type="number" maxlength="13"/>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="type" class="form-label">Type</label>
+                                        <select class="form-control" name="type" id="type">
+                                            <option value="physical">Fysiek</option> <option value="digital">Digitaal</option>
+                                        </select>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label for="descriptionComic" class="form-label">Omschrijving</label>
+                                        <textarea class="form-control" rows="10" cols="40" name="descriptionComic" id="descriptionComic" maxlength="255"></textarea>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <label class="form-label" for="explicitComic">Expliciet</label>
+                                        <input name="explicitComic" id="explicitComic" type="checkbox"/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuleren</button>
+                                    <button type="submit" class="btn btn-warning" name="upd-button" value="@comicbook.comicbookID">Aanpassen</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- delete comicbook -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#idD-@comicbook.comicbookID">
+                    Verwijderen
+                </button>
+
+                <div class="modal fade" id="idD-@comicbook.comicbookID" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Let op</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                U staat op het punt om @comicbook.name te verwijderen. Het ID van @comicbook.name is @comicbook.comicbookID.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuleren</button>
+                                <form method="post" asp-page-handler="DeleteComicbook">
+                                    <button type="submit" class="btn btn-danger" name="del-button" value="@comicbook.comicbookID">Verwijderen</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
