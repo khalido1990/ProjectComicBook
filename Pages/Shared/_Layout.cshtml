@@ -10,7 +10,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" asp-area="" asp-page="/Index">ProjectComicBook</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -30,22 +30,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-page="/UpdateAuthor">Auteurs aanpassen</a>
-                    </li>    
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/UpdateIllustrator">Tekenaars aanpassen</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/UpdateComicbooks">Stripboeken aanpassen</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark " asp-area="" asp-page="/Login">Login</a>
                     </li>
                     <form class="d-flex" method="get" asp-page="/SearchResult">
-                                            <input class="form-control me-2" name="Search" type="search" placeholder="Search" aria-label="Search">
-                                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        <input class="form-control me-2" name="Search" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Zoeken</button>
                     </form>
                 </ul>
-                
             </div>
         </div>
     </nav>

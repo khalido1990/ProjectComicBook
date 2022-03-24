@@ -6,7 +6,7 @@ namespace ProjectComicBook.Pages
 {
     public class Authors : PageModel
     {
-        private DatabaseHandler DatabaseHandler = new DatabaseHandler();
+        private readonly DatabaseHandler _databaseHandler = new DatabaseHandler();
         public void OnGet()
         {
             
@@ -16,7 +16,7 @@ namespace ProjectComicBook.Pages
         {
             var authorName = Request.Form["authorName"];
             string authorDescription = Request.Form["authorDescription"];
-            DatabaseHandler.AddAuthor(authorName, authorDescription);
+            _databaseHandler.AddAuthor(authorName, authorDescription);
             return RedirectToPage("./Index");
         }
     }

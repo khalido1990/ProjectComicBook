@@ -6,7 +6,7 @@ namespace ProjectComicBook.Pages
 {
     public class Illustrators : PageModel
     {
-        private DatabaseHandler DatabaseHandler = new DatabaseHandler();
+        private readonly DatabaseHandler _databaseHandler = new DatabaseHandler();
 
         public void OnGet()
         {
@@ -18,7 +18,7 @@ namespace ProjectComicBook.Pages
         {
             var illustratorName = Request.Form["illustratorName"];
             string illustratorDescription = Request.Form["illustratorDescription"];
-            DatabaseHandler.AddIllustrator(illustratorName, illustratorDescription);
+            _databaseHandler.AddIllustrator(illustratorName, illustratorDescription);
             return RedirectToPage("./Index");
         }
     }
