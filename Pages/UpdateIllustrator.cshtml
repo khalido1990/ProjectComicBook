@@ -1,0 +1,72 @@
+@page
+@model ProjectComicBook.Pages.UpdateIllustrator
+
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lijst van tekenaars om te bewerken.</h1>
+</div>
+<div>
+    <label>Tekenaars</label>
+    <ul>
+        @foreach (var illustrator in Model.Illustrators)
+        {
+            <li>
+                @illustrator.illustratorID, @illustrator.name, @illustrator.description
+                <!-- update illustrator -->
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#idE-@illustrator.illustratorID">
+                    Aanpassen
+                </button>
+                
+                <div class="modal fade" id="idE-@illustrator.illustratorID" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Let op</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form method="post" asp-page-handler="UpdateIllustrator">
+                                <div class="modal-body">
+                                    <label for="illustratorName" class="form-label">Auteur</label>
+                                    <input type="text" class="form-control" id="illustratorName" name="illustratorName" aria-describedby="emailHelp" required>
+                                    <label for="illustratorDescription" class="form-label">Omschrijving</label>
+                                    <input type="text" class="form-control" id="illustratorDescription" name="illustratorDescription" aria-describedby="illustratorDescriptionHelp">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuleren</button>
+                                    <button type="submit" class="btn btn-warning" name="upd-button" value="@illustrator.illustratorID">Aanpassen</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- delete illustrator -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#idD-@illustrator.illustratorID">
+                    Verwijderen
+                </button>
+                
+                <div class="modal fade" id="idD-@illustrator.illustratorID" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Let op</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                U staat op het punt om @illustrator.name te verwijderen. Het ID van @illustrator.name is @illustrator.illustratorID.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuleren</button>
+                                <form method="post" asp-page-handler="DeleteIllustrator">
+                                    <button type="submit" class="btn btn-danger" name="del-button" value="@illustrator.illustratorID">Verwijderen</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
