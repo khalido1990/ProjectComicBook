@@ -1,0 +1,26 @@
+@page
+@model ProjectComicBook.Pages.SearchResult
+
+@{
+    Layout = null;
+}
+
+<div>
+    <h1>Resultaten:</h1>
+    <p>Zoek opdracht: @Model.Search</p>
+    
+    <table class="table">
+        <tr>
+            <th>Titel</th>
+            <th>Description</th>
+        </tr>
+        @foreach (var c in Model.comics)
+        {
+            <tr>
+            <td>@c.titel</td>
+            <td>@c.description</td>
+            </tr>
+        }
+
+    </table>
+</div>
