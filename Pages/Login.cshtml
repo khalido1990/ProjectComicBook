@@ -16,11 +16,21 @@
     
     <form method="post">
         <div asp-validation-summary="All"></div>
-        <input type="text" name="UserName" id="UserName" asp-for="UserName">
-        <input type="password" name="Password" id="Password" asp-for="Password">
+        Username <input type="text" name="UserName" id="UserName" asp-for="UserName">
+        Password <input type="password" name="Password" id="Password" asp-for="Password">
+        <input type="checkbox" asp-for="KeepLoggedIn">
         <button type="submit" value="log" asp-page-handler="login">Login</button>
-        <button type="submit" value="reg" asp-page-handler="reg">Register</button>
     </form>
+    <h3>debug + @Model.KeepLoggedIn</h3>
+        <form method="post">
+            <div asp-validation-summary="All"></div>
+            Username <input type="text" name="UserName" id="UserName" asp-for="UserName">
+            Password <input type="password" name="Password" id="Password" asp-for="Password">
+            Confirm Password <input type="password" asp-for="Cpassword">
+            name <input type="text" asp-for="Name">
+            <button type="submit" value="reg" asp-page-handler="reg">Register</button>
+            <h2>@Model.ErrorMsg</h2>
+        </form>
 </div>
 </body>
 </html>

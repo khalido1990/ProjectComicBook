@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Dapper;
+using Microsoft.AspNetCore.Identity;
 using MySql.Data.MySqlClient;
+using ProjectComicBook.Pages;
 
 namespace ProjectComicBook.Models
 {
@@ -28,15 +30,45 @@ namespace ProjectComicBook.Models
             using var connection = Connect();
             connection.Execute("DELETE FROM author WHERE authorID = @authorID", new {authorID});
         }
-        public void AddNewUser(string UserName, string Password)
+        public void AddAuthor(string name, string description)
         {
+            using var connection = Connect(); 
+            connection.Execute("INSERT INTO author (name, description) values (@name, @description)"
+                , new {name, description});
+        }
+        public void AddNewUser(string username, string password, string name)
+        {
+            int role_ID = 3;
             using var connection = Connect();
             //var insert = ("Insert INTO user (@username, @password), VALUES (@0, @1)");
-            var sqlinsert = "INSERT INTO user (username,password)" +"VALUES (@0,@1)";
-            string querding = new string(UserName + "," + Password);
-            connection.Execute(sqlinsert, querding);
-            //connection.Execute(insert, "UserName", "Password");
-            //connection.Execute("INSERT INTO user (username, password)", VALUES ("UserName", "Password"));
+            connection.Execute("INSERT INTO user (username,password, name, role_ID)" +"VALUES (@username,@password, @name, @role_ID)", 
+                new {username, password, name, role_ID});
+        }
+        
+        public user GetUserNow(string username, string password)
+        {
+            var passwordhasher = new PasswordHasher<string>();
+            user _user = new user();
+            using var connection = Connect();
+            try
+            {
+                _user = connection.Query<user>(
+                    "SELECT * FROM user WHERE username=@username",
+                    new {username}).Single();
+                _user = _user;
+                if (passwordhasher.VerifyHashedPassword(null, _user.password, password) ==
+                    PasswordVerificationResult.Success)
+                {
+                    return _user;
+                }
+
+            }
+            catch (Exception e)
+            {
+                return new user();
+            }
+
+            return new user();
 
         }
     }
