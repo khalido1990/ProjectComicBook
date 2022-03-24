@@ -6,7 +6,7 @@ namespace ProjectComicBook.Pages
 {
     public class Comicbooks : PageModel
     {
-        private readonly DatabaseHandler DatabaseHandler = new DatabaseHandler();
+        private readonly DatabaseHandler _databaseHandler = new DatabaseHandler();
 
         public void OnGet()
         {
@@ -23,7 +23,7 @@ namespace ProjectComicBook.Pages
             int serie_ID = 1;
             int authorID = 1;
             int illustratorID = 1;
-            DatabaseHandler.AddComic(serie_ID, authorID, illustratorID, title, descriptionComic, isbn, releaseDate, type, pages);
+            _databaseHandler.AddComic(serie_ID, authorID, illustratorID, title, descriptionComic, isbn, releaseDate, type, pages);
             return RedirectToPage("./Index");
         }
     }

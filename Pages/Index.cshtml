@@ -4,9 +4,44 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <h1 class="display-4">Lijst van stripboeken, auteurs, tekenaars.</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <div class="p-3 mb-2 bg-secondary bg-opacity-10">
+                <div class="p-3 mb-2 bg-secondary bg-opacity-10 text-center">
+                    Recente toegevogde stripboeken
+                </div>
+                @foreach (var recentlyAddedComicBook in Model.RecentlyAddedComicBooks) {
+                    <div class="card" style="">
+                        <div class="row g-0">
+                            <div class="col-sm-4">
+                                <img src="https://cutt.ly/GSYluo6" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">@recentlyAddedComicBook.titel</h5>
+                                    <p class="card-text">Auteur(s): @recentlyAddedComicBook.name</p>
+                                    <p class="card-text">ISBN: @recentlyAddedComicBook.isbn</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="p-3 mb-2 bg-secondary bg-opacity-10">
+                <div class="p-3 mb-2 bg-secondary bg-opacity-10 text-center">
+                    Recente Niuews
+                </div>
+            </div>
+            <div class="p-3 mb-2 bg-secondary bg-opacity-10">
+                <div class="p-3 mb-4 bg-secondary bg-opacity-10 text-center">
+                    Leuke Weetjes
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div>
     <label>Stripboeken</label>

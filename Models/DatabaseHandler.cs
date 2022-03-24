@@ -17,6 +17,12 @@ namespace ProjectComicBook.Models
             return connection.Query("SELECT * FROM comicbook");
         }
         
+        public IEnumerable<dynamic> GetRecentlyAddedComicBooks()
+        {
+            using var connection = Connect();
+            return connection.Query("SELECT * FROM comicbook JOIN author a on a.authorID = comicbook.authorID ORDER BY comicbookID DESC");
+        }
+        
         public IEnumerable<dynamic> GetAllAuthors()
         {
             using var connection = Connect();

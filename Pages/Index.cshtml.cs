@@ -3,23 +3,34 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ProjectComicBook.Models;
 
-public class IndexModel : PageModel
+namespace ProjectComicBook.Pages
 {
-    private readonly ILogger<IndexModel> _logger;
-
-    public IndexModel(ILogger<IndexModel> logger)
+    public class IndexModel : PageModel
     {
-        _logger = logger;
-    }
+        private readonly ILogger<IndexModel> _logger;
+        private DatabaseHandler DatabaseHandler = new DatabaseHandler();
 
-    public IEnumerable<dynamic> ComicBooks{ get; set; }
-    public IEnumerable<dynamic> Authors{ get; set; }
-    public IEnumerable<dynamic> Illustrators { get; set; }
 
-    public void OnGet()
-    {
-        ComicBooks = new DatabaseHandler().GetAllComicBooks();
-        Authors = new DatabaseHandler().GetAllAuthors();
-        Illustrators = new DatabaseHandler().GetAllIllustrators();
+        public IndexModel(ILogger<IndexModel> logger, IEnumerable<dynamic> comicBooks, IEnumerable<dynamic> recentlyAddedComicBooks, IEnumerable<dynamic> authors, IEnumerable<dynamic> illustrators)
+        {
+            _logger = logger;
+            ComicBooks = comicBooks;
+            RecentlyAddedComicBooks = recentlyAddedComicBooks;
+            Authors = authors;
+            Illustrators = illustrators;
+        }
+
+        public IEnumerable<dynamic> ComicBooks{ get; set; }
+        public IEnumerable<dynamic> RecentlyAddedComicBooks{ get; set; }
+        public IEnumerable<dynamic> Authors{ get; set; }
+        public IEnumerable<dynamic> Illustrators { get; set; }
+
+        public void OnGet()
+        {
+            ComicBooks = new DatabaseHandler().GetAllComicBooks();
+            RecentlyAddedComicBooks = new DatabaseHandler().GetRecentlyAddedComicBooks();
+            Authors = new DatabaseHandler().GetAllAuthors();
+            Illustrators = new DatabaseHandler().GetAllIllustrators();
+        }
     }
 }
