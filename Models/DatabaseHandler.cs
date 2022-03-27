@@ -44,7 +44,59 @@ namespace ProjectComicBook.Models
             connection.Execute("INSERT INTO user (username,password, name, role_ID)" +"VALUES (@username,@password, @name, @role_ID)", 
                 new {username, password, name, role_ID});
         }
+
+        public bool CheckForDoubleEntryUserName(string userName)
+        {
+            using var connection = Connect();
+            try
+            {
+                connection.Query(
+                    "SELECT * FROM user WHERE username=@userName",
+                    new {userName});
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
+        }
+        public bool CheckForDoubleEntryName(string Name)
+        {
+            using var connection = Connect();
+            try
+            {
+                connection.Query(
+                    "SELECT * FROM user WHERE name=@Name",
+                    new {Name}).Single();
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
+        }
         
+        public bool CheckForDoubleEntry(string userName, string Name)
+        {
+            using var connection = Connect();
+            try
+            {
+                connection.Query(
+                    "SELECT * FROM user WHERE username=@userName or name=@Name",
+                    new {userName, Name});
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
+        }
         public user GetUserNow(string username, string password)
         {
             var passwordhasher = new PasswordHasher<string>();
@@ -55,7 +107,6 @@ namespace ProjectComicBook.Models
                 _user = connection.Query<user>(
                     "SELECT * FROM user WHERE username=@username",
                     new {username}).Single();
-                _user = _user;
                 if (passwordhasher.VerifyHashedPassword(null, _user.password, password) ==
                     PasswordVerificationResult.Success)
                 {
