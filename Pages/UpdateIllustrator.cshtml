@@ -24,15 +24,15 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">Let op</h5>
+                                <h5 class="modal-title" id="staticBackdropLabel">U bewerkt: @illustrator.name</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form method="post" asp-page-handler="UpdateIllustrator">
                                 <div class="modal-body">
                                     <label for="illustratorName" class="form-label">Auteur</label>
-                                    <input type="text" class="form-control" id="illustratorName" name="illustratorName" aria-describedby="emailHelp" required>
+                                    <input type="text" class="form-control" id="illustratorName" name="illustratorName" aria-describedby="emailHelp" required placeholder="@illustrator.name">
                                     <label for="illustratorDescription" class="form-label">Omschrijving</label>
-                                    <input type="text" class="form-control" id="illustratorDescription" name="illustratorDescription" aria-describedby="illustratorDescriptionHelp">
+                                    <input type="text" class="form-control" id="illustratorDescription" name="illustratorDescription" aria-describedby="illustratorDescriptionHelp" placeholder="@illustrator.description">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuleren</button>
