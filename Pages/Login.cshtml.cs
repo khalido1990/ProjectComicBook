@@ -55,7 +55,7 @@ namespace ProjectComicBook.Pages
         [TempData] public bool KeepLoggedIn { get; set; }
         public string NameDisplay { get; set; }
         public string ErrorMsg = "";
-        private user _user;
+        private user _user = new user();
         
 
         public user SessionUser
@@ -79,6 +79,7 @@ namespace ProjectComicBook.Pages
         public void OnGet()
         {
             SessionUser = new user();
+            ErrorMsg = MakeMsg("Welcome" + SessionUser.name);
         }
 
         public void OnPostLogout()

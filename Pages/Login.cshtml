@@ -26,6 +26,7 @@
         <input type="checkbox" asp-for="KeepLoggedIn">
         <button type="submit" value="log" asp-page-handler="login">Login</button>
     </form>
+    <h3>@Model.ErrorMsg</h3>
     <form method="post">
         <button type="submit" value="logout" asp-page-handler="logout">Logout</button>
     </form>
