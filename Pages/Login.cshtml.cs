@@ -53,6 +53,7 @@ namespace ProjectComicBook.Pages
         [Required] [BindProperty] [MaxLength(25)] public string Name { get; set; }
         [TempData, Required, Compare(nameof(Password))] public string Cpassword { get; set; }
         [TempData] public bool KeepLoggedIn { get; set; }
+        public string NameDisplay { get; set; }
         public string ErrorMsg = "";
         private user _user;
         

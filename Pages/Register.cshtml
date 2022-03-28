@@ -1,0 +1,35 @@
+﻿@page
+@model ProjectComicBook.Pages.Login
+
+@{
+    ViewData["Title"] = "Home page";
+    
+}
+@section Scripts
+{
+    <partial name="Shared/_ValidationScriptsPartial"/>
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div>
+        <form method="post">
+            <div asp-validation-summary="All"></div>
+            Username <input type="text" name="UserName" id="UserName" asp-for="UserName">
+            Password <input type="password" name="Password" id="Password" asp-for="Password">
+            <div>
+                Confirm Password <input type="password" asp-for="Cpassword">
+                <span asp-validation-for="Cpassword"></span>
+            </div>
+            name <input type="text" asp-for="Name">
+            <button type="submit" value="reg" asp-page-handler="reg">Register</button>
+            <h2>@Model.ErrorMsg</h2>
+        </form>
+
+</div>
+</body>
+</html>

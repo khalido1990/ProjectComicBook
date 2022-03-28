@@ -3,6 +3,11 @@
 
 @{
     ViewData["Title"] = "Home page";
+    
+}
+@section Scripts
+{
+    <partial name="Shared/_ValidationScriptsPartial"/>
 }
 
 <!DOCTYPE html>
@@ -14,6 +19,21 @@
 <body>
 <div>
     
+    <form method="post">
+        <div asp-validation-summary="All"></div>
+        Username <input type="text" name="UserName" id="UserName" asp-for="UserName">
+        Password <input type="password" name="Password" id="Password" asp-for="Password">
+        <input type="checkbox" asp-for="KeepLoggedIn">
+        <button type="submit" value="log" asp-page-handler="login">Login</button>
+    </form>
+    <form method="post">
+        <button type="submit" value="logout" asp-page-handler="logout">Logout</button>
+    </form>
+    <h3>
+        <button>
+            <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register user</a>
+        </button>
+    </h3>
 </div>
 </body>
 </html>

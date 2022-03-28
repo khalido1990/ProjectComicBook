@@ -145,7 +145,7 @@ namespace ProjectComicBook.Models
             {
                 connection.Query(
                     "SELECT * FROM user WHERE username=@userName or name=@Name",
-                    new {userName, Name});
+                    new {userName, Name}).Single();
                 return true;
 
             }
