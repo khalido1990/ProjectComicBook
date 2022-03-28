@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ProjectComicBook.Models;
+using ProjectComicBook.Pages.Shared;
 
 namespace ProjectComicBook.Pages
 {
@@ -9,6 +10,32 @@ namespace ProjectComicBook.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private DatabaseHandler DatabaseHandler = new DatabaseHandler();
+        public string LUserDisplayString = "Login";
+
+        public string TestString
+        {
+            get
+            {
+                return LUserDisplayString;
+            }
+            set
+            {
+                LUserDisplayString = value;
+            }
+        }
+
+        public static string UserDisplayString
+        {
+            get
+            {
+                return SharedInfo.UserNameString;
+            }
+            set
+            {
+                
+                UserDisplayString = value;
+            }
+        }
 
 
         public IndexModel(ILogger<IndexModel> logger, IEnumerable<dynamic> comicBooks, IEnumerable<dynamic> recentlyAddedComicBooks, IEnumerable<dynamic> authors, IEnumerable<dynamic> illustrators)

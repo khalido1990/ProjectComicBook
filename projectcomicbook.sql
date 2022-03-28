@@ -136,7 +136,7 @@ CREATE TABLE `user` (
   `role_ID` int(11) NOT NULL,
   `name` varchar(25) NOT NULL,
   `username` varchar(25) NOT NULL,
-  `password` varchar(25) NOT NULL
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
