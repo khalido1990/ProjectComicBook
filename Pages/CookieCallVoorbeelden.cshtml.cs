@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 using ProjectComicBook.Pages.Shared;
 
 namespace ProjectComicBook.Pages;
@@ -14,20 +15,26 @@ public class CookieCallVoorbeelden : PageModel
     public bool LoginBool;
     public void OnGet()
     {
-        /*
-        //Get username
-        UserName = cookies.User.username;
-        //Get Password
-        Password = cookies.User.password;
-        //Get Name
-        Name = cookies.User.name;
-        //Get UserRole
-        UserRole = cookies.User.role_ID;
-        //Get UserID
-        UserID = cookies.User.userID;
-        //Get the LoginBool
-        LoginBool = cookies.User.StayLoggedIn;
-        */
+        //Use this
+        SharedInfo.AcountInfo = JsonConvert.DeserializeObject<user>(Request.Cookies["Global"]);
+
+        if (SharedInfo.HasValidData)
+        {
+            //Get username
+            UserName = SharedInfo.AcountInfo.username;
+            //Get Password
+            Password = SharedInfo.AcountInfo.password;
+            //Get Name
+            Name = SharedInfo.AcountInfo.name;
+            //Get UserRole
+            UserRole = SharedInfo.AcountInfo.role_ID;
+            //Get UserID
+            UserID =  SharedInfo.AcountInfo.userID;
+            //Get the LoginBool
+            LoginBool = SharedInfo.AcountInfo.StayLoggedIn;
+        }
+        
+        
     }
 
     //logout by deleting the "Login Cookie"

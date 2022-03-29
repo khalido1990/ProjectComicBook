@@ -50,16 +50,26 @@ namespace ProjectComicBook.Pages
         
     }
 
+    //this class handles the login
     public class Login : PageModel
     {
         [BindProperty] [MaxLength(25)] public string UserName { get; set; }
         
         [BindProperty] [MaxLength(25)] public string Password { get; set; }
         [BindProperty] [MaxLength(25)] public string Name { get; set; }
+
+        
         [TempData] public bool KeepLoggedIn { get; set; }
+        //An String that is used for the logging of messages
         public string ErrorMsg = "";
+
+        public string LogoutText = "";
+
+        public bool HideLogout = false;
+        //create a new user class
         private user _user = new user();
         //claims
+        //create a get set for a session user
         public user SessionUser
         {
             get
@@ -67,8 +77,11 @@ namespace ProjectComicBook.Pages
                 if (SharedInfo.HasLegitCookie = CheckCookie())
                 {
                     SharedInfo.SetUser(Setup());
+                    HideLogout = false;
                     return  _user = Setup();
                 }
+
+                HideLogout = true;
                 return this._user;
             }
             set
@@ -85,10 +98,19 @@ namespace ProjectComicBook.Pages
         
         public DatabaseHandler Handler = new DatabaseHandler();
 
-        
+        //on the start displays initial messages
         public void OnGet()
         {
-            ErrorMsg = MakeMsg("Welcome" + SessionUser.name);
+            //check if the username is not null
+            if (SessionUser.name != null)
+            {
+                //make the new msg that will be shown on the html page
+                ErrorMsg = MakeMsg("Welcome" + "" + SessionUser.name);
+            }
+            else
+            {
+                ErrorMsg = MakeMsg("Please Login");
+            }
         }
 
         public MyCookie GiveCookieInfo()
@@ -103,6 +125,7 @@ namespace ProjectComicBook.Pages
         public void OnPostLogout()
         {
             DeleteCookies();
+            HideLogout = true;
         }
         //Handle the login with a post method
         public void OnPostLogin(string UserName, string Password, bool KeepLoggedIn)
@@ -119,13 +142,16 @@ namespace ProjectComicBook.Pages
                 Response.Cookies.Append("Login", JsonConvert.SerializeObject(cookie), new CookieOptions());
                 SharedInfo.DisplayName(me.name);
                 SharedInfo.HasLegitCookie = true;
+                HideLogout = false;
                 ErrorMsg = MakeMsg("Welcome" + " " + me.username);
+                Response.Cookies.Append("Global", JsonConvert.SerializeObject(me), new CookieOptions());
                  
 
             }
             else
             {
                 ErrorMsg = MakeMsg("Wrong username or password");
+                
             }
         }
 
