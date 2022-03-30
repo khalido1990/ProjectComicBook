@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjectComicBook.Models;
+using ProjectComicBook.Repositories;
 
 namespace ProjectComicBook.Pages
 {
     public class Comicbooks : PageModel
     {
-        private readonly DatabaseHandler _databaseHandler = new DatabaseHandler();
-
+        // private readonly DatabaseHandler _databaseHandler = new DatabaseHandler();
+        private readonly ComicRepository _comicRepository = new ComicRepository();
         public void OnGet()
         {
             
@@ -23,7 +24,7 @@ namespace ProjectComicBook.Pages
             int serie_ID = 1;
             int authorID = 1;
             int illustratorID = 1;
-            _databaseHandler.AddComic(serie_ID, authorID, illustratorID, title, descriptionComic, isbn, releaseDate, type, pages);
+            _comicRepository.AddComic(serie_ID, authorID, illustratorID, title, descriptionComic, isbn, releaseDate, type, pages);
             return RedirectToPage("./Index");
         }
     }

@@ -1,0 +1,42 @@
+﻿@page
+@model ProjectComicBook.Pages.Browse
+
+@{
+    ViewData["Title"] = "Browse";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="p-3 mb-2 bg-secondary bg-opacity-10">
+                <div class="p-3 mb-2 bg-secondary bg-opacity-10 text-center">
+                    Recente toegevoegde stripboeken
+                </div>
+
+                @{
+                    System.Diagnostics.Debug.Assert(Model.GetAllComicBooks != null, "Model.GetAllComicBooks != null");
+                }
+                @foreach (var c in Model.GetAllComicBooks) {
+                    string cover = c.cover;
+                    @if (string.IsNullOrEmpty(cover)) {
+                        c.cover = "https://cutt.ly/QDxYZlD";
+                    }
+                    <div class="card col-6" style="">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <img src="@c.cover" class="img-fluid rounded-start" alt="@c.cover">
+                            </div>
+                            <div class="col-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">@c.titel</h5>
+                                    <p class="card-text">Datum: @c.releaseDate.ToString($"dd-MM-yyyy")</p>
+                                    <p class="card-text">ISBN: @c.isbn</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

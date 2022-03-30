@@ -12,15 +12,19 @@
                     Recente toegevoegde stripboeken
                 </div>
                 @foreach (var recentlyAddedComicBook in Model.RecentlyAddedComicBooks) {
+                    string cover = recentlyAddedComicBook.cover;
+                    @if (string.IsNullOrEmpty(cover)) {
+                        recentlyAddedComicBook.cover = "https://cutt.ly/QDxYZlD";
+                    }
                     <div class="card" style="">
                         <div class="row g-0">
                             <div class="col-sm-4">
-                                <img src="https://cutt.ly/GSYluo6" class="img-fluid rounded-start" alt="...">
+                                <img src="@recentlyAddedComicBook.cover" class="img-fluid rounded-start" alt="@recentlyAddedComicBook.cover">
                             </div>
                             <div class="col-sm">
                                 <div class="card-body">
                                     <h5 class="card-title">@recentlyAddedComicBook.titel</h5>
-                                    <p class="card-text">Auteur(s): @recentlyAddedComicBook.name</p>
+                                    <p class="card-text">Auteur(s):</p>
                                     <p class="card-text">ISBN: @recentlyAddedComicBook.isbn</p>
                                 </div>
                             </div>
@@ -42,29 +46,4 @@
             </div>
         </div>
     </div>
-</div>
-<div>
-    <label>Stripboeken</label>
-    <ul>
-        @foreach (var comicBook in Model.ComicBooks)
-        {
-            <li>ID: @comicBook.comicbookID -- Stripboek: @comicBook.titel -- Aantal blz.: @comicBook.pages -- Beschijving: @comicBook.description</li>
-            <br/>
-        }
-    </ul>
-
-    <label>Auteurs</label>
-    <ul>
-        @foreach (var author in Model.Authors)
-        {
-            <li>ID: @author.authorID, Naam: @author.name, Omschrijving: @author.description</li>
-        }
-    </ul>
-    <label>Tekenaars</label>
-        <ul>
-            @foreach (var illustrator in Model.Illustrators)
-            {
-                <li>ID: @illustrator.authorID, Naam: @illustrator.name, Omschrijving: @illustrator.description</li>
-            }
-        </ul>
 </div>

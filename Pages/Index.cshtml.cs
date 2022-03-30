@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ProjectComicBook.Models;
 using ProjectComicBook.Pages.Shared;
+using ProjectComicBook.Repositories;
 
 namespace ProjectComicBook.Pages
 {
@@ -11,6 +12,13 @@ namespace ProjectComicBook.Pages
         private readonly ILogger<IndexModel> _logger;
         private DatabaseHandler DatabaseHandler = new DatabaseHandler();
         public string LUserDisplayString = "Login";
+        
+        public IndexModel(ILogger<IndexModel> logger, IEnumerable<ComicBook> comicBooks, IEnumerable<ComicBookAndAuthor> recentlyAddedComicBooks, IEnumerable<dynamic> authors, IEnumerable<dynamic> illustrators)
+        {
+            _logger = logger;
+            ComicBooks = comicBooks;
+            RecentlyAddedComicBooks = recentlyAddedComicBooks;
+        }
 
         public string TestString
         {
@@ -37,27 +45,13 @@ namespace ProjectComicBook.Pages
             }
         }
 
-
-        public IndexModel(ILogger<IndexModel> logger, IEnumerable<dynamic> comicBooks, IEnumerable<dynamic> recentlyAddedComicBooks, IEnumerable<dynamic> authors, IEnumerable<dynamic> illustrators)
-        {
-            _logger = logger;
-            ComicBooks = comicBooks;
-            RecentlyAddedComicBooks = recentlyAddedComicBooks;
-            Authors = authors;
-            Illustrators = illustrators;
-        }
-
-        public IEnumerable<dynamic> ComicBooks{ get; set; }
-        public IEnumerable<dynamic> RecentlyAddedComicBooks{ get; set; }
-        public IEnumerable<dynamic> Authors{ get; set; }
-        public IEnumerable<dynamic> Illustrators { get; set; }
+        public IEnumerable<ComicBook> ComicBooks{ get; set; }
+        public IEnumerable<ComicBookAndAuthor>? RecentlyAddedComicBooks{ get; set; }
 
         public void OnGet()
         {
-            ComicBooks = new DatabaseHandler().GetAllComicBooks();
-            RecentlyAddedComicBooks = new DatabaseHandler().GetRecentlyAddedComicBooks();
-            Authors = new DatabaseHandler().GetAllAuthors();
-            Illustrators = new DatabaseHandler().GetAllIllustrators();
+            ComicBooks = new ComicRepository().GetAllComicBooks();
+            RecentlyAddedComicBooks = new ComicRepository().GetRecentlyAddedComicBooks();
         }
     }
 }

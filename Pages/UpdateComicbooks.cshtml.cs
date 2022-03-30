@@ -3,25 +3,29 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjectComicBook.Models;
+using ProjectComicBook.Repositories;
 
 namespace ProjectComicBook.Pages
 {
     public class UpdateComicbooks : PageModel
     {
-        private DatabaseHandler DatabaseHandler = new DatabaseHandler();
-    
-        public IEnumerable<dynamic> Comicbooks{ get; set; }
+        private readonly ComicRepository _comicRepository = new ComicRepository();
+        public UpdateComicbooks(IEnumerable<ComicBook> comicbooks)
+        {
+            Comicbooks = comicbooks;
+        }
+        public IEnumerable<ComicBook> Comicbooks{ get; set; }
 
         public void OnGet()
         {
-            Comicbooks = new DatabaseHandler().GetAllComicBooks();
+            Comicbooks = new ComicRepository().GetAllComicBooks();
         }
     
         public RedirectToPageResult OnPostDeleteComicbook()
         {
             string comicbookIDString = Request.Form["del-button"];
             int comicbookID = Convert.ToInt32(comicbookIDString);
-            DatabaseHandler.DeleteComicbook(comicbookID);
+            _comicRepository.DeleteComicbook(comicbookID);
             return RedirectToPage("./updateComicbooks");
         }
     
@@ -39,7 +43,7 @@ namespace ProjectComicBook.Pages
             int authorID = 1;
             int illustratorID = 1;
             int explicitComic = 1;
-            DatabaseHandler.UpdateComicbook(comicbookID, serie_ID, authorID, illustratorID, title, descriptionComic, isbn, releaseDate, type, pages, explicitComic);
+            _comicRepository.UpdateComicbook(comicbookID, serie_ID, authorID, illustratorID, title, descriptionComic, isbn, releaseDate, type, pages, explicitComic);
             return RedirectToPage("./updateComicbooks");
         }
     }

@@ -14,7 +14,7 @@
         @foreach (var comicbook in Model.Comicbooks)
         {
             <li>
-                @comicbook.comicbookID, @comicbook.name, @comicbook.description
+                @comicbook.comicbookID, @comicbook.titel, @comicbook.description
                 <!-- update comicbook -->
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#idE-@comicbook.comicbookID">
                     Aanpassen
@@ -24,14 +24,14 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">U bewerkt: @comicbook.name"</h5>
+                                <h5 class="modal-title" id="staticBackdropLabel">U bewerkt: @comicbook.titel"</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form method="post" asp-page-handler="UpdateComicbook">
                                 <div class="modal-body">
                                     <div>
                                         <label for="title" class="form-label">Titel</label>
-                                        <input class="form-control" required type="text" name="title" id="title" placeholder="@comicbook.title"/>
+                                        <input class="form-control" required type="text" name="title" id="title" placeholder="@comicbook.titel"/>
                                     </div>
                                     <br/>
                                     <div>
@@ -93,7 +93,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                U staat op het punt om @comicbook.name te verwijderen. Het ID van @comicbook.name is @comicbook.comicbookID.
+                                U staat op het punt om @comicbook.titel te verwijderen. Het ID van @comicbook.titel is @comicbook.comicbookID.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuleren</button>
