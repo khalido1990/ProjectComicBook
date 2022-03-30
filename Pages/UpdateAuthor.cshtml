@@ -30,9 +30,9 @@
                             <form method="post" asp-page-handler="UpdateAuthor">
                                 <div class="modal-body">
                                     <label for="authorName" class="form-label">Auteur</label>
-                                    <input type="text" class="form-control" id="authorName" name="authorName" aria-describedby="emailHelp" required value="bitte bob">
+                                    <input type="text" class="form-control" id="authorName" name="authorName" aria-describedby="emailHelp" required value="@author.name">
                                     <label for="authorDescription" class="form-label">Omschrijving</label>
-                                    <input type="text" class="form-control" id="authorDescription" name="authorDescription" aria-describedby="authorDescriptionHelp" placeholder="@author.description">
+                                    <input type="text" class="form-control" id="authorDescription" name="authorDescription" aria-describedby="authorDescriptionHelp" value="@author.description">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuleren</button>

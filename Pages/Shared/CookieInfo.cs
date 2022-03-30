@@ -1,17 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using ProjectComicBook.Models;
-using Microsoft.AspNetCore.Identity;
-using Newtonsoft.Json;
-using ProjectComicBook.Pages.Shared;
-using Ubiety.Dns.Core;
-using static Newtonsoft.Json.JsonConvert;
-using JsonConverter = System.Text.Json.Serialization.JsonConverter;
-namespace ProjectComicBook.Pages.Shared;
+﻿using ProjectComicBook.Pages;
 
 public class MakeCookie
 {

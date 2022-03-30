@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjectComicBook.Models;
+using ProjectComicBook.Repositories;
 
 namespace ProjectComicBook.Pages
 {
     public class UpdateIllustrator : PageModel
     {
-        private readonly DatabaseHandler _databaseHandler = new DatabaseHandler();
+        private readonly IllustratorRepository _illustratorRepository = new IllustratorRepository();
 
-        public UpdateIllustrator(IEnumerable<dynamic> illustrators)
+        public UpdateIllustrator(IEnumerable<Illustrator> illustrators)
         {
             Illustrators = illustrators;
         }
@@ -18,14 +19,14 @@ namespace ProjectComicBook.Pages
 
         public void OnGet()
         {
-            Illustrators = new DatabaseHandler().GetAllIllustrators();
+            Illustrators = new IllustratorRepository().GetAllIllustrators();
         }
     
         public RedirectToPageResult OnPostDeleteIllustrator()
         {
             string illustratorIDString = Request.Form["del-button"];
             int illustratorID = Convert.ToInt32(illustratorIDString);
-            _databaseHandler.DeleteIllustrator(illustratorID);
+            _illustratorRepository.DeleteIllustrator(illustratorID);
             return RedirectToPage("./updateIllustrator");
         }
     
@@ -35,7 +36,7 @@ namespace ProjectComicBook.Pages
             string illustratorDescription = Request.Form["illustratorDescription"];
             string illustratorIDString = Request.Form["upd-button"];
             int illustratorID = Convert.ToInt32(illustratorIDString);
-            _databaseHandler.UpdateIllustrator(illustratorID, illustratorName, illustratorDescription);
+            _illustratorRepository.UpdateIllustrator(illustratorID, illustratorName, illustratorDescription);
             return RedirectToPage("./updateIllustrator");
         }
     }
