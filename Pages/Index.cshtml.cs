@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ProjectComicBook.Models;
 using ProjectComicBook.Pages.Shared;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace ProjectComicBook.Pages
 {
@@ -58,6 +60,15 @@ namespace ProjectComicBook.Pages
             RecentlyAddedComicBooks = new DatabaseHandler().GetRecentlyAddedComicBooks();
             Authors = new DatabaseHandler().GetAllAuthors();
             Illustrators = new DatabaseHandler().GetAllIllustrators();
+        }
+        
+        public RedirectToPageResult OnPostAddToCollection()
+        {
+            string comicbookIDstring = Request.Form["addBook"];
+            int comicbookID = Convert.ToInt32(comicbookIDstring);
+            int userID = 1;
+            DatabaseHandler.AddToCollection(comicbookID, userID);
+            return RedirectToPage("./index");
         }
     }
 }

@@ -93,7 +93,20 @@ namespace ProjectComicBook.Models
             using var connection = Connect();
             connection.Execute("DELETE FROM comicbook WHERE comicbookID = @comicbookID", new {comicbookID});
         }
+
+        public IEnumerable<object> ViewCollection(int userID)
+        {
+            using var connection = Connect();
+                return connection.Query("SELECT * FROM `collectioncomicbook` WHERE userID = @userID", new {userID});
+        }
         
+        public void AddToCollection(int comicbookID, int userID)
+        {
+            using var connection = Connect();
+            connection.Execute("INSERT INTO collectioncomicbook (comicbookID, userID) values (@comicbookID, @userID)"
+                , new {comicbookID, userID});
+        }
+
         public void AddNewUser(string username, string password, string name)
         {
             int role_ID = 3;

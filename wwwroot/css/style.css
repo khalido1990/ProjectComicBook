@@ -1,0 +1,14 @@
+#collectionLi{
+    display: flex;
+    background-color: pink;
+    flex-direction: column;
+    align-items: center;
+    margin: 3%;
+}
+
+#collectionUl{
+    display: flex;
+    background-color: lightcyan;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
