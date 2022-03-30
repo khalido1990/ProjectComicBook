@@ -96,9 +96,14 @@ namespace ProjectComicBook.Models
 
         public IEnumerable<object> ViewCollection(int userID)
         {
-            using var connection = Connect();
-                return connection.Query("SELECT * FROM `collectioncomicbook` WHERE userID = @userID", new {userID});
+            using var connection = Connect(); 
+            //return connection.Query("SELECT * FROM `collectioncomicbook` WHERE userID = @userID", new {userID})
+            return connection.Query(
+                "SELECT collectioncomicbook.userID, comicbook.title, collectioncomicbook.comicbookID FROM collectioncomicbook INNER JOIN comicbook ON collectioncomicbook.comicbookID=comicbook.comicbookID WHERE collectioncomicbook.userID=@userID",
+                new {userID});
         }
+        
+        
         
         public void AddToCollection(int comicbookID, int userID)
         {

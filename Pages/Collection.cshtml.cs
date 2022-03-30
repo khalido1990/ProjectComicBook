@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjectComicBook.Models;
@@ -13,29 +14,21 @@ public class Collection : PageModel
     private int userID;
     private bool LoginBool;
 
-    public IEnumerable<object> UserCollection { get; set; }
+    public IEnumerable<dynamic> UserCollection { get; set; }
 
     public void OnGet()
     {
         SharedInfo.AcountInfo = JsonConvert.DeserializeObject<user>(Request.Cookies["Global"]);
-        if (SharedInfo.HasValidData)
-        {
-            UserCollection = new DatabaseHandler().ViewCollection(userID);
-            userID =  SharedInfo.AcountInfo.userID;
-            LoginBool = SharedInfo.AcountInfo.StayLoggedIn;
-            //UserCollection = new DatabaseHandler().ViewCollection(userID);
-        }
-        else
-        {
-            UserCollection = new DatabaseHandler().ViewCollection(0);
-        }
+        userID = SharedInfo.AcountInfo.userID;
+        LoginBool = SharedInfo.AcountInfo.StayLoggedIn;
+        UserCollection = new DatabaseHandler().ViewCollection(userID);
     }
-
-    
 
     public RedirectToPageResult OnPostRemoveFromCollection()
     {
         return RedirectToPage("./updateIllustrator");
     }
-
+    //vanavond opmaak fixen
+    //verwijder uit collectie knop maken
+    //if check maken die kijkt als er al iets in je collectie zit
 }

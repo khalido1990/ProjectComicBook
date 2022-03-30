@@ -9,20 +9,22 @@
 <div class="text-center">
     <h1 class="display-4">Je collectie</h1>
 </div>
-<div>
-    <label>Stripboeken</label>
-    <ul id="collectionUl">
-        @foreach (var collection in Model.UserCollection)
-        {
-            <li id="collectionLi">
-                <img src="img/notFound.jpg" class="rounded float-start" alt="notFound" width="60" height="60">
-                <br/>
-                @collection
-                <br/>
-                <form method="post" asp-page-handler="RemoveFromCollection">
-                    <button type="submit" class="btn btn-warning" name="del-button" value="@collection">Verwijderen uit collectie</button>
-                </form>
-            </li>
-        }
-    </ul>
+<div class="container">
+    <div class="row">
+        <label>Stripboeken</label>
+        <ul>
+            @foreach (var collection in Model.UserCollection)
+            {
+                <div class="col-4">
+                    <li id="collectionLi">
+                        <img src="img/notFound.jpg" class="rounded float-start" alt="notFound" width="60" height="60">
+                        @collection.title
+                        <form method="post" asp-page-handler="RemoveFromCollection">
+                            <button type="submit" class="btn btn-warning" name="del-button" value="@collection.userID">Verwijderen uit collectie</button>
+                        </form>
+                    </li>
+                </div>
+            }
+        </ul>
+    </div>
 </div>
