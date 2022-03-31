@@ -6,40 +6,49 @@
 }
 
 <div class="collectionContainer">
-    <div class="text-center">
-        <h1 class="display-4">Je collectie</h1>
-    </div>
     <ul class="collectionUl">
-        @foreach (var collection in Model.UserCollection)
+        @if (Model.UserCollection != null)
         {
-            <li class="collectionLi">
-                <div class="boxy">
-                    <img src="https://cutt.ly/QDxYZlD" class="rounded float-start" alt="notFound" width="100" height="120">
-                    @collection.title
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#idD-@collection.comicbookID">
-                        Verwijderen uit collectie
-                    </button>
-                    <div class="modal fade" id="idD-@collection.comicbookID" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">Let op</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    U staat op het punt om @collection.title te verwijderen. Het ID van @collection.title is @collection.comicbookID.
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuleren</button>
-                                    <form method="post" asp-page-handler="RemoveFromCollection">
-                                        <button type="submit" class="btn btn-danger" name="del-button" value="@collection.comicbookID">Verwijderen</button>
-                                    </form>
+            <div class="text-center">
+                <h1 class="display-4">Je collectie</h1>
+            </div>
+            @foreach (var collection in Model.UserCollection)
+            {
+                <li class="collectionLi">
+                    <div class="boxy">
+                        <img src="https://cutt.ly/QDxYZlD" class="rounded float-start" alt="notFound" width="100" height="120">
+                        @collection.title
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#idD-@collection.comicbookID">
+                            Verwijderen uit collectie
+                        </button>
+                        <div class="modal fade" id="idD-@collection.comicbookID" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Let op</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        U staat op het punt om @collection.title te verwijderen. Het ID van @collection.title is @collection.comicbookID.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuleren</button>
+                                        <form method="post" asp-page-handler="RemoveFromCollection">
+                                            <button type="submit" class="btn btn-danger" name="del-button" value="@collection.comicbookID">Verwijderen</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            }
+        }
+        else
+        {
+            <div class="text-center">
+                <h1 class="display-4">Login om je collectie te zien</h1>
+            </div>
         }
     </ul>
 </div>

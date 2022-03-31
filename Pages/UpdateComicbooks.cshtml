@@ -13,7 +13,7 @@
     <ul>
         @foreach (var comicbook in Model.Comicbooks)
         {
-            <li id = "collectionLi">
+            <li class="collectionLi">
                 @comicbook.comicbookID, @comicbook.title, @comicbook.description
                 <!-- update comicbook -->
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#idE-@comicbook.comicbookID">

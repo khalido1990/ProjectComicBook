@@ -13,13 +13,22 @@ namespace ProjectComicBook.Pages
         private bool LoginBool;
 
         public IEnumerable<dynamic> UserCollection { get; set; }
+        private DatabaseHandler DatabaseHandler = new DatabaseHandler();
 
         public void OnGet()
         {
-            SharedInfo.AcountInfo = JsonConvert.DeserializeObject<user>(Request.Cookies["Global"]);
-            userID = SharedInfo.AcountInfo.userID;
-            LoginBool = SharedInfo.AcountInfo.StayLoggedIn;
-            UserCollection = new DatabaseHandler().ViewCollection(userID);
+            try
+            {
+                SharedInfo.AcountInfo = JsonConvert.DeserializeObject<user>(Request.Cookies["Global"]);
+                userID = SharedInfo.AcountInfo.userID;
+                LoginBool = SharedInfo.AcountInfo.StayLoggedIn;
+                UserCollection = new DatabaseHandler().ViewCollection(userID);
+            }
+            catch (Exception yeet)
+            {
+                Console.WriteLine(yeet);
+            }
+            
         }
 
         public RedirectToPageResult OnPostRemoveFromCollection()
@@ -31,8 +40,13 @@ namespace ProjectComicBook.Pages
             UserCollection = new DatabaseHandler().RemoveFromCollection(comicbookID, userID);
             return RedirectToPage("./Collection");
         }
-        //vanavond opmaak fixen
-        //verwijder uit collectie knop maken
-        //if check maken die kijkt als er al iets in je collectie zit
+        public RedirectToPageResult OnPostAddToCollection()
+        {
+            string comicbookIDstring = Request.Form["addBook"];
+            int comicbookID = Convert.ToInt32(comicbookIDstring);
+            int userID = 1;
+            DatabaseHandler.AddToCollection(comicbookID, userID);
+            return RedirectToPage("./UpdateComicbooks");
+        }
     }
 }

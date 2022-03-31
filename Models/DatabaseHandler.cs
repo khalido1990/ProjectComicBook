@@ -115,8 +115,6 @@ namespace ProjectComicBook.Models
         public void AddToCollection(int comicbookID, int userID)
         {
             using var connection = Connect();
-            //connection.Execute("SELECT comicbookID, userID FROM collectioncomicbook where userID = @userID AND comicbookID = @comicbookID",
-            //    new {comicbookID, userID});
             connection.Execute("INSERT INTO collectioncomicbook (comicbookID, userID) values (@comicbookID, @userID)"
                 , new {comicbookID, userID});
         }
