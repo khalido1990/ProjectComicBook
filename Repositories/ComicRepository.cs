@@ -16,7 +16,7 @@ namespace ProjectComicBook.Repositories
         public List<ComicBook> Search(string search)
         {
             using var connection = Connect();
-            var comic = connection.Query<ComicBook>("SELECT * FROM comicbook WHERE titel LIKE @search OR description LIKE @search", new
+            var comic = connection.Query<ComicBook>("SELECT * FROM comicbook WHERE title LIKE @search OR description LIKE @search", new
             {
                 search = "%" + search + "%"
             });
@@ -26,7 +26,7 @@ namespace ProjectComicBook.Repositories
         public IEnumerable<ComicBook> GetAllComicBooks()
         {
             using var connection = Connect();
-            return connection.Query<ComicBook>("SELECT *,release_date as releaseDate FROM comicbook ORDER BY titel");
+            return connection.Query<ComicBook>("SELECT *,release_date as releaseDate FROM comicbook ORDER BY title");
         }
         
         public IEnumerable<ComicBookAndAuthor>? GetRecentlyAddedComicBooks()
@@ -58,7 +58,7 @@ namespace ProjectComicBook.Repositories
         {
             using var connection = Connect();
             connection.Execute(
-                "UPDATE comicbook SET comicbookID = @comicbookID, serie_ID = @serie_ID, titel = @title, release_date = @releaseDate, isbn = @isbn, type = @type, cover = NULL, description = @descriptionComic, pages = @pages, explicit = @explicitComic WHERE comicbookID = @comicbookID",
+                "UPDATE comicbook SET comicbookID = @comicbookID, serie_ID = @serie_ID, title = @title, release_date = @releaseDate, isbn = @isbn, type = @type, cover = NULL, description = @descriptionComic, pages = @pages, explicit = @explicitComic WHERE comicbookID = @comicbookID",
                 new {
                     comicbookID,
                     serie_ID,

@@ -7,7 +7,7 @@ namespace ProjectComicBook.Models
     {
         public int comicbookID { get; set; }
         public int serie_ID { get; set; }
-        public string titel { get; set; }
+        public string title { get; set; }
         public string authorID { get; set; }
         public string isbn { get; set; }
         public string cover { get; set; }
