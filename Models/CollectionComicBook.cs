@@ -1,5 +1,5 @@
-namespace ProjectComicBook.Models;
-
+namespace ProjectComicBook.Models
+{
     public class CollectionComicBook
     {
         public int collectionID { get; set; }
@@ -10,3 +10,4 @@ namespace ProjectComicBook.Models;
         public int rating { get; set; }
         public int read { get; set; }
     }
+}
