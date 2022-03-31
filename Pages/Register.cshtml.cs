@@ -10,16 +10,6 @@ namespace ProjectComicBook.Pages
 {
     public class Register : PageModel
     {
-        public Register(string errorMsg, string userName, string password, string name, string cpassword, bool keepLoggedIn, string nameDisplay)
-        {
-            ErrorMsg = errorMsg;
-            UserName = userName;
-            Password = password;
-            Name = name;
-            Cpassword = cpassword;
-            KeepLoggedIn = keepLoggedIn;
-            NameDisplay = nameDisplay;
-        }
         [BindProperty] [MaxLength(25)] public string UserName { get; set; }
         
         [BindProperty] [MaxLength(25)] public string Password { get; set; }
@@ -37,26 +27,36 @@ namespace ProjectComicBook.Pages
         public void OnPostReg(string UserName, string Password, string Name, string Cpassword)
         {
             
+            //check if the name or username is already in the database
             if (!Handler.CheckForDoubleEntry(UserName, Name))
             {
+                //add the new user in the database and hash the password
                 Handler.AddNewUser(UserName, HashVal(Password), Name);
+                //make a new msg to welcome the user
                 ErrorMsg = MakeMsg("Welcome" + " " + Name);
+                //create a new cookie 
                 MyCookie cookie = new MyCookie(UserName, Password, KeepLoggedIn);
+                //post the new cookie
                 Response.Cookies.Append("Login", JsonConvert.SerializeObject(cookie), new CookieOptions());
             }
             else
             {
+                //display the text for the double entry method
                 ErrorMsg = MakeMsg(Handler.CheckForDoubleEntryName(Name) ? "Name already taken" : "Username already taken");
             }
             
         }
 
+        //fucntion that is used to turn the password into an hashvalue
         public string HashVal(string pass)
         {
+            //create a new password hasher and configure it for strings
             var passHasher = new PasswordHasher<string>();
+            //return the new hashed password
             return pass = passHasher.HashPassword(null,pass);
             
         }
+        //make a msg that will be displayed
         private string MakeMsg(string msg)
         {
             return msg;

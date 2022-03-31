@@ -75,8 +75,10 @@ namespace ProjectComicBook.Pages
         {
             get
             {
+                //Set the haslegitcookie from the shared info with the checkcookie result
                 if (SharedInfo.HasLegitCookie = CheckCookie())
                 {
+                    //from the shared info insert the new user information that is returned from setup
                     SharedInfo.SetUser(Setup());
                     HideLogout = false;
                     return  _user = Setup();
@@ -110,17 +112,11 @@ namespace ProjectComicBook.Pages
             }
             else
             {
+                //make a new msg 
                 ErrorMsg = MakeMsg("Please Login");
             }
         }
-
-        public MyCookie GiveCookieInfo()
-        {
-            //MyCookie cookie = new MyCookie();
-            MyCookie Cookie = JsonConvert.DeserializeObject<MyCookie>(Request.Cookies["Login"]);
-            return Cookie;
-        }
-
+        
 
 
         public void OnPostLogout()

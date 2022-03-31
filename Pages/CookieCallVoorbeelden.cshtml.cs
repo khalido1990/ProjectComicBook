@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 //hier staan voorbeelden van de commandos van de CookieInfo static
 namespace ProjectComicBook.Pages
 {
+    
     public class CookieCallVoorbeelden : PageModel
     {
         public string UserName;
@@ -17,6 +18,7 @@ namespace ProjectComicBook.Pages
             //Use this
             SharedInfo.AcountInfo = JsonConvert.DeserializeObject<user>(Request.Cookies["Global"]);
 
+            //check 
             if (SharedInfo.HasValidData)
             {
                 //Get username
