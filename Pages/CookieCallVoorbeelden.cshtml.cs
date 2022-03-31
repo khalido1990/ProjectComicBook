@@ -18,7 +18,7 @@ namespace ProjectComicBook.Pages
             //Use this
             SharedInfo.AcountInfo = JsonConvert.DeserializeObject<user>(Request.Cookies["Global"]);
 
-            //check 
+            //check if the shared info hasvalid data bool is 
             if (SharedInfo.HasValidData)
             {
                 //Get username
@@ -34,26 +34,6 @@ namespace ProjectComicBook.Pages
                 //Get the LoginBool
                 LoginBool = SharedInfo.AcountInfo.StayLoggedIn;
             }
-        
-        
-        }
-
-        //logout by deleting the "Login Cookie"
-        public void LogoutByCookie()
-        {
-            //cookies.Logout();
-        }
-
-        //Login by Using the "Login" Cookie can return null if it does not exist
-        public void LoginByCookie()
-        {
-            //cookies.CookieLogin();
-        }
-
-        //Use this if another loginpage class has been made to refresh the stored one
-        public void SetNewLoginPage()
-        {
-            //cookies.LogingPage = new Login();
         }
     }
 }

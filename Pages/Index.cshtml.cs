@@ -19,32 +19,7 @@ namespace ProjectComicBook.Pages
             ComicBooks = comicBooks;
             RecentlyAddedComicBooks = recentlyAddedComicBooks;
         }
-
-        public string TestString
-        {
-            get
-            {
-                return LUserDisplayString;
-            }
-            set
-            {
-                LUserDisplayString = value;
-            }
-        }
-
-        public static string UserDisplayString
-        {
-            get
-            {
-                return SharedInfo.UserNameString;
-            }
-            set
-            {
-                
-                UserDisplayString = value;
-            }
-        }
-
+        
         public IEnumerable<ComicBook> ComicBooks{ get; set; }
         public IEnumerable<ComicBookAndAuthor>? RecentlyAddedComicBooks{ get; set; }
 
