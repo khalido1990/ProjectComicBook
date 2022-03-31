@@ -69,7 +69,7 @@ CREATE TABLE `comicbook` (
   `serie_ID` int(11) NOT NULL,
   `authorID` int(11) NOT NULL,
   `illustratorID` int(11) NOT NULL,
-  `titel` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
   `release_date` date NOT NULL,
   `isbn` int(11) DEFAULT NULL,
   `type` varchar(25) DEFAULT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE `comicbook` (
 -- Dumping data for table `comicbook`
 --
 
-INSERT INTO `comicbook` (`comicbookID`, `serie_ID`, `authorID`, `illustratorID`, `titel`, `release_date`, `isbn`, `type`, `cover`, `description`, `pages`, `explicit`) VALUES
+INSERT INTO `comicbook` (`comicbookID`, `serie_ID`, `authorID`, `illustratorID`, `title`, `release_date`, `isbn`, `type`, `cover`, `description`, `pages`, `explicit`) VALUES
 (1, 1, 2, 1, 'Batman / Superman: World\'s Finest #1', '2022-03-15', 2147483647, 'Fysiek', 'test', 'THE DEVIL NEZHA, CHAPTER ONE: DOOMED\nThe Dark Knight. The Man of Steel. They are the two finest superheroes that the world has ever known…and they’re together again in an epic new series from the legendary talents of Mark Waid and Dan Mora! In the not-to', 32, 1),
 (2, 2, 3, 18, 'BatMan #28', '1969-07-13', 94123, NULL, NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel ligula in tellus imperdiet tincidunt. Fusce in lorem non lorem faucibus consequat vel eget enim. Nunc ut elit id leo lacinia rutrum vel non est. Vivamus vel mollis lorem. Fusce eros nunc.', 67, 0),
 (3, 7, 12, 14, 'SuperWomen #93', '1933-04-19', 17257, NULL, NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel ligula in tellus imperdiet tincidunt. Fusce in lorem non lorem faucibus consequat vel eget enim. Nunc ut elit id leo lacinia rutrum vel non est. Vivamus vel mollis lorem. Fusce eros nunc.', 165, 0),
@@ -171,7 +171,7 @@ INSERT INTO `role` (`role_ID`, `name`) VALUES
 
 CREATE TABLE `serie` (
   `serie_ID` int(11) NOT NULL,
-  `titel` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `completed` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -180,7 +180,7 @@ CREATE TABLE `serie` (
 -- Dumping data for table `serie`
 --
 
-INSERT INTO `serie` (`serie_ID`, `titel`, `description`, `completed`) VALUES
+INSERT INTO `serie` (`serie_ID`, `title`, `description`, `completed`) VALUES
 (1, 'Batman / Superman: World\'s Finest', 'The Dark Knight. The Man of Steel. They are the two finest superheroes that the world has ever known...and they’re together again in an epic new series from the legendary talents of Mark Waid and Dan Mora!\r\n\r\nIn the not-too-distant past, Superman’s powers', 0),
 (2, 'BatMan', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel ligula in tellus imperdiet tincidunt. Fusce in lorem non lorem faucibus consequat vel eget enim. Nunc ut elit id leo lacinia rutrum vel non est. Vivamus vel mollis lorem. Fusce eros nunc.', 0),
 (3, 'AntMan', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel ligula in tellus imperdiet tincidunt. Fusce in lorem non lorem faucibus consequat vel eget enim. Nunc ut elit id leo lacinia rutrum vel non est. Vivamus vel mollis lorem. Fusce eros nunc.', 1),
