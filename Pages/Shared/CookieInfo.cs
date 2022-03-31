@@ -1,12 +1,5 @@
 ﻿using ProjectComicBook.Pages;
 
-public class MakeCookie
-{
-    public void MakeglobalVar()
-    {
-        //JsonConvert.SerializeObject<SharedInfo>(SharedInfo)
-    }
-}
 
 //global class containing Global user  info 
 public static class SharedInfo
@@ -38,12 +31,6 @@ public static class SharedInfo
     public static void SetCookie(MyCookie cookie)
     {
         GlobalCookie = cookie;
-    }
-
-    public static void SaveAsCookie()
-    {
-        
-        //JsonConvert.SerializeObject(<SharedInfo>);
     }
 
     //Check the integrity of this class returns true if it all is filled
