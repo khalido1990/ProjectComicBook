@@ -13,7 +13,7 @@ namespace ProjectComicBook.Pages
         private DatabaseHandler DatabaseHandler = new DatabaseHandler();
         public string LUserDisplayString = "Login";
         
-        public IndexModel(ILogger<IndexModel> logger, IEnumerable<ComicBook> comicBooks, IEnumerable<ComicBookAndAuthor> recentlyAddedComicBooks, IEnumerable<dynamic> authors, IEnumerable<dynamic> illustrators)
+        public IndexModel(ILogger<IndexModel> logger, IEnumerable<ComicBook> comicBooks, IEnumerable<ComicBookAndAuthor> recentlyAddedComicBooks, IEnumerable<Author> authors, IEnumerable<Illustrator> illustrators)
         {
             _logger = logger;
             ComicBooks = comicBooks;

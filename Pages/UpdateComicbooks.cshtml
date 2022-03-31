@@ -13,25 +13,24 @@
     <ul>
         @foreach (var comicbook in Model.Comicbooks)
         {
-            <li>
-                @comicbook.comicbookID, @comicbook.titel, @comicbook.description
+            <li id = "collectionLi">
+                @comicbook.comicbookID, @comicbook.title, @comicbook.description
                 <!-- update comicbook -->
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#idE-@comicbook.comicbookID">
                     Aanpassen
                 </button>
-                
                 <div class="modal fade" id="idE-@comicbook.comicbookID" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">U bewerkt: @comicbook.titel"</h5>
+                                <h5 class="modal-title" id="staticBackdropLabel">U bewerkt: @comicbook.title"</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form method="post" asp-page-handler="UpdateComicbook">
                                 <div class="modal-body">
                                     <div>
-                                        <label for="title" class="form-label">Titel</label>
-                                        <input class="form-control" required type="text" name="title" id="title" placeholder="@comicbook.titel"/>
+                                        <label for="title" class="form-label">title</label>
+                                        <input class="form-control" required type="text" name="title" id="title" placeholder="@comicbook.title"/>
                                     </div>
                                     <br/>
                                     <div>
@@ -79,12 +78,30 @@
                         </div>
                     </div>
                 </div>
-                
+                <!-- add comicbook to collection-->
+                <form method="post" asp-page-handler="AddToCollection">
+                    <button type="submit" class="btn btn-primary" name="addBook" value="@comicbook.comicbookID" data-bs-toggle="modal" data-bs-target="#CollectionAdd">Toevoegen aan collectie</button>
+                </form>
+                <div class="modal fade" id="CollectionAdd" tabindex="-1" aria-labelledby="AddAlert" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="AddAlertLabel">Aan uw collectie toegevoegd</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        @comicbook.title is toegevoegd aan uw collectie.
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <!-- delete comicbook -->
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#idD-@comicbook.comicbookID">
                     Verwijderen
                 </button>
-
                 <div class="modal fade" id="idD-@comicbook.comicbookID" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -93,7 +110,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                U staat op het punt om @comicbook.titel te verwijderen. Het ID van @comicbook.titel is @comicbook.comicbookID.
+                                U staat op het punt om @comicbook.title te verwijderen. Het ID van @comicbook.title is @comicbook.comicbookID.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuleren</button>

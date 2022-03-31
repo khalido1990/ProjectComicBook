@@ -10,6 +10,7 @@ namespace ProjectComicBook.Pages
     public class UpdateComicbooks : PageModel
     {
         private readonly ComicRepository _comicRepository = new ComicRepository();
+        private DatabaseHandler DatabaseHandler = new DatabaseHandler();
         public UpdateComicbooks(IEnumerable<ComicBook> comicbooks)
         {
             Comicbooks = comicbooks;
@@ -45,6 +46,15 @@ namespace ProjectComicBook.Pages
             int explicitComic = 1;
             _comicRepository.UpdateComicbook(comicbookID, serie_ID, authorID, illustratorID, title, descriptionComic, isbn, releaseDate, type, pages, explicitComic);
             return RedirectToPage("./updateComicbooks");
+        }
+
+        public RedirectToPageResult OnPostAddToCollection()
+        {
+            string comicbookIDstring = Request.Form["addBook"];
+            int comicbookID = Convert.ToInt32(comicbookIDstring);
+            int userID = 1;
+            DatabaseHandler.AddToCollection(comicbookID, userID);
+            return RedirectToPage("./UpdateComicbooks");
         }
     }
 }

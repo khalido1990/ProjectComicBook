@@ -101,5 +101,37 @@ namespace ProjectComicBook.Models
             return new user();
 
         }
+        
+        public IEnumerable<object> ViewCollection(int userID)
+        {
+            using var connection = Connect();
+            return connection.Query(
+                "SELECT collectioncomicbook.userID, collectioncomicbook.comicbookID, comicbook.title, comicbook.cover FROM collectioncomicbook INNER JOIN comicbook ON collectioncomicbook.comicbookID=comicbook.comicbookID WHERE collectioncomicbook.userID=@userID",
+                new {userID});
+        }
+
+        public void AddToCollection(int comicbookID, int userID)
+        {
+            using var connection = Connect();
+            //connection.Execute("SELECT comicbookID, userID FROM collectioncomicbook where userID = @userID AND comicbookID = @comicbookID",
+            //    new {comicbookID, userID});
+            connection.Execute("INSERT INTO collectioncomicbook (comicbookID, userID) values (@comicbookID, @userID)"
+                , new {comicbookID, userID});
+        }
+        
+        public IEnumerable<object> RemoveFromCollection(int comicbookID, int userID)
+        {
+            using var connection = Connect();
+            return connection.Query(
+                "DELETE FROM collectioncomicbook WHERE comicbookID = @comicbookID AND userID = @userID",
+                new {comicbookID, userID});
+        }
+
+        //public void CollectionCheck(int comicbookID, int userID)
+        //{
+        //    using var connection = Connect();
+        //    connection.Execute("SELECT comicbookID, userID FROM collectioncomicbook where userID = @userID AND comicbookID = @comicbookID",
+        //        new {comicbookID, userID});
+        //}
     }
 }
