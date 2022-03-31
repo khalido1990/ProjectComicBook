@@ -41,6 +41,7 @@ namespace ProjectComicBook.Models
             }
             
         }
+        //check if the entered name already exists within the user database
         public bool CheckForDoubleEntryName(string Name)
         {
             using var connection = Connect();
@@ -59,6 +60,7 @@ namespace ProjectComicBook.Models
             
         }
         
+        //check if username or Name already exists in the user table return false if not
         public bool CheckForDoubleEntry(string userName, string Name)
         {
             using var connection = Connect();

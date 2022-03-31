@@ -55,7 +55,6 @@ namespace ProjectComicBook.Pages
     public class Login : PageModel
     {
         [BindProperty] [MaxLength(25)] public string UserName { get; set; }
-        
         [BindProperty] [MaxLength(25)] public string Password { get; set; }
         [BindProperty] [MaxLength(25)] public string Name { get; set; }
 
@@ -63,8 +62,6 @@ namespace ProjectComicBook.Pages
         [TempData] public bool KeepLoggedIn { get; set; }
         //An String that is used for the logging of messages
         public string ErrorMsg = "";
-
-        public string LogoutText = "";
 
         public bool HideLogout = false;
         //create a new user class
@@ -80,11 +77,15 @@ namespace ProjectComicBook.Pages
                 {
                     //from the shared info insert the new user information that is returned from setup
                     SharedInfo.SetUser(Setup());
+                    //hide logout
                     HideLogout = false;
+                    //return the new user with the return value of the setup method
                     return  _user = Setup();
                 }
 
+                //toggle the logout bool
                 HideLogout = true;
+                
                 return this._user;
             }
             set
