@@ -17,29 +17,37 @@
     <title></title>
 </head>
 <body>
-<div>
-    @if (Model.HideLogout)
-    {
-        <form method="post">
-            <div asp-validation-summary="ModelOnly"></div>
-            Username <input type="text" name="UserName" id="UserName" asp-for="UserName">
-            Password <input type="password" name="Password" id="Password" asp-for="Password">
-            <input type="checkbox" asp-for="KeepLoggedIn">
-            <button type="submit" value="log" asp-page-handler="login">Login</button>
-        </form>
-    }
-    <h3>@Model.ErrorMsg</h3>
-    @if (Model.HideLogout != true)
-    {
-        <form method="post">
-            <button type="submit" value="logout" asp-page-handler="logout">Logout</button>
-        </form>
-    }
-    <h3>
-        <button>
-            <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register user</a>
-        </button>
-    </h3>
-</div>
+<section class="vh-100">
+    <div class="container-fluid">
+        @if (Model.HideLogout)
+        {
+            <form method="post" class="row d-flex justify-content-center align-items-center h-100">
+                <div asp-validation-summary="ModelOnly"></div>
+                Username <input type="text" name="UserName" id="UserName" asp-for="UserName">
+                Password <input type="password" name="Password" id="Password" asp-for="Password">
+                Remember me <input type="checkbox" asp-for="KeepLoggedIn">
+                <button type="submit" value="log" asp-page-handler="login">Login</button>
+            </form>
+        }
+        <h3 class="row d-flex justify-content-center align-items-center h-100">@Model.ErrorMsg</h3>
+        @if (Model.HideLogout != true)
+        {
+            <form method="post">
+                <button type="submit" value="logout" asp-page-handler="logout">Logout</button>
+            </form>
+        }
+                <h3>
+                    <button>
+                        <a asp-area="" asp-page="/Register">Register user</a>
+                    </button>
+                </h3>
+    </div>
+</section>
+        <h3>
+            <button>
+                <a asp-area="" asp-page="/Register">Register user</a>
+            </button>
+        </h3>
+
 </body>
 </html>

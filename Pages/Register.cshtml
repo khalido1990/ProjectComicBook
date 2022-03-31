@@ -8,18 +8,21 @@
 {
     <partial name="Shared/_ValidationScriptsPartial"/>
 }
-<div>
-        <form method="post">
-            <div asp-validation-summary="All"></div>
-            Username <input type="text" name="UserName" id="UserName" asp-for="UserName">
-            Password <input type="password" name="Password" id="Password" asp-for="Password">
-            <div>
-                Confirm Password <input type="password" asp-for="Cpassword">
-                <span asp-validation-for="Cpassword"></span>
-            </div>
-            name <input type="text" asp-for="Name">
-            <button type="submit" value="reg" asp-page-handler="reg">Register</button>
-            <h2>@Model.ErrorMsg</h2>
-        </form>
-
-</div>
+<section>
+    <div class="row d-flex justify-content-center align-items-center h-100">
+            <form method="post">
+                <div asp-validation-summary="All"></div>
+                Username <input type="text" name="UserName" id="UserName" asp-for="UserName">
+                Password <input type="password" name="Password" id="Password" asp-for="Password">
+                <div>
+                    Confirm Password <input type="password" asp-for="Cpassword">
+                    <span asp-validation-for="Cpassword"></span>
+                </div>
+                name <input type="text" asp-for="Name">
+                <button type="submit" value="reg" asp-page-handler="reg">Register</button>
+                <h2>@Model.ErrorMsg</h2>
+            </form>
+    
+    </div>
+</section>
+<
