@@ -10,16 +10,16 @@ namespace ProjectComicBook.Pages
 {
     public class Register : PageModel
     {
-        public Register(string errorMsg, string userName, string password, string name, string cpassword, bool keepLoggedIn, string nameDisplay)
-        {
-            ErrorMsg = errorMsg;
-            UserName = userName;
-            Password = password;
-            Name = name;
-            Cpassword = cpassword;
-            KeepLoggedIn = keepLoggedIn;
-            NameDisplay = nameDisplay;
-        }
+        // public Register(string errorMsg, string userName, string password, string name, string cpassword, bool keepLoggedIn, string nameDisplay)
+        // {
+        //     ErrorMsg = errorMsg;
+        //     UserName = userName;
+        //     Password = password;
+        //     Name = name;
+        //     Cpassword = cpassword;
+        //     KeepLoggedIn = keepLoggedIn;
+        //     NameDisplay = nameDisplay;
+        // }
         [BindProperty] [MaxLength(25)] public string UserName { get; set; }
         
         [BindProperty] [MaxLength(25)] public string Password { get; set; }
