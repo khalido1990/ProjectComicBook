@@ -5,7 +5,7 @@
 public static class SharedInfo
 {
     //An static for global naming 
-    
+
     public static string UserNameString = "Login";
     //bool if cookie is good Needs to be true to get use out of this class
     public static bool HasLegitCookie = false;
@@ -42,5 +42,5 @@ public static class SharedInfo
         }
         return false;
     }
-    
+
 }

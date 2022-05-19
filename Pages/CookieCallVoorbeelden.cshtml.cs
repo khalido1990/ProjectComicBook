@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 //hier staan voorbeelden van de commandos van de CookieInfo static
 namespace ProjectComicBook.Pages
 {
-    
+
     public class CookieCallVoorbeelden : PageModel
     {
         public string UserName;
@@ -30,7 +30,7 @@ namespace ProjectComicBook.Pages
                 //Get UserRole
                 UserRole = SharedInfo.AcountInfo.role_ID;
                 //Get UserID
-                UserID =  SharedInfo.AcountInfo.userID;
+                UserID = SharedInfo.AcountInfo.userID;
                 //Get the LoginBool
                 LoginBool = SharedInfo.AcountInfo.StayLoggedIn;
             }

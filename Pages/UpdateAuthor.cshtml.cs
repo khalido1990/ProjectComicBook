@@ -15,13 +15,13 @@ namespace ProjectComicBook.Pages
         {
             Authors = authors;
         }
-        public IEnumerable<Author> Authors{ get; set; }
+        public IEnumerable<Author> Authors { get; set; }
 
         public void OnGet()
         {
             Authors = new AuthorRepository().GetAllAuthors();
         }
-    
+
         public RedirectToPageResult OnPostDeleteAuthor()
         {
             string authorIDString = Request.Form["del-button"];
@@ -29,7 +29,7 @@ namespace ProjectComicBook.Pages
             _authorRepository.DeleteAuthor(authorID);
             return RedirectToPage("./updateAuthor");
         }
-    
+
         public RedirectToPageResult OnPostUpdateAuthor()
         {
             string authorName = Request.Form["authorName"];

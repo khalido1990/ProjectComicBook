@@ -15,13 +15,13 @@ namespace ProjectComicBook.Pages
         {
             Comicbooks = comicbooks;
         }
-        public IEnumerable<ComicBook> Comicbooks{ get; set; }
+        public IEnumerable<ComicBook> Comicbooks { get; set; }
 
         public void OnGet()
         {
             Comicbooks = new ComicRepository().GetAllComicBooks();
         }
-    
+
         public RedirectToPageResult OnPostDeleteComicbook()
         {
             string comicbookIDString = Request.Form["del-button"];
@@ -29,7 +29,7 @@ namespace ProjectComicBook.Pages
             _comicRepository.DeleteComicbook(comicbookID);
             return RedirectToPage("./updateComicbooks");
         }
-    
+
         public RedirectToPageResult OnPostUpdateComicbook()
         {
             string comicbookIDString = Request.Form["upd-button"];

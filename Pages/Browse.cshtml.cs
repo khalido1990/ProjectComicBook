@@ -13,7 +13,7 @@ namespace ProjectComicBook.Pages
         {
             GetAllComicBooks = getAllComicBooks;
         }
-        public IEnumerable<ComicBook>? GetAllComicBooks{ get; set; }
+        public IEnumerable<ComicBook>? GetAllComicBooks { get; set; }
         public void OnGet()
         {
             GetAllComicBooks = new ComicRepository().GetAllComicBooks();

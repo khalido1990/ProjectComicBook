@@ -20,8 +20,8 @@ namespace ProjectComicBook.Models
             int role_ID = 3;
             using var connection = Connect();
             //var insert = ("Insert INTO user (@username, @password), VALUES (@0, @1)");
-            connection.Execute("INSERT INTO user (username,password, name, role_ID)" +"VALUES (@username,@password, @name, @role_ID)", 
-                new {username, password, name, role_ID});
+            connection.Execute("INSERT INTO user (username,password, name, role_ID)" + "VALUES (@username,@password, @name, @role_ID)",
+                new { username, password, name, role_ID });
         }
 
         public bool CheckForDoubleEntryUserName(string userName)
@@ -31,7 +31,7 @@ namespace ProjectComicBook.Models
             {
                 connection.Query(
                     "SELECT * FROM user WHERE username=@userName",
-                    new {userName});
+                    new { userName });
                 return true;
 
             }
@@ -39,7 +39,7 @@ namespace ProjectComicBook.Models
             {
                 return false;
             }
-            
+
         }
         //check if the entered name already exists within the user database
         public bool CheckForDoubleEntryName(string Name)
@@ -49,7 +49,7 @@ namespace ProjectComicBook.Models
             {
                 connection.Query(
                     "SELECT * FROM user WHERE name=@Name",
-                    new {Name}).Single();
+                    new { Name }).Single();
                 return true;
 
             }
@@ -57,9 +57,9 @@ namespace ProjectComicBook.Models
             {
                 return false;
             }
-            
+
         }
-        
+
         //check if username or Name already exists in the user table return false if not
         public bool CheckForDoubleEntry(string userName, string Name)
         {
@@ -68,7 +68,7 @@ namespace ProjectComicBook.Models
             {
                 connection.Query(
                     "SELECT * FROM user WHERE username=@userName or name=@Name",
-                    new {userName, Name}).Single();
+                    new { userName, Name }).Single();
                 return true;
 
             }
@@ -76,7 +76,7 @@ namespace ProjectComicBook.Models
             {
                 return false;
             }
-            
+
         }
         public user GetUserNow(string username, string password)
         {
@@ -87,7 +87,7 @@ namespace ProjectComicBook.Models
             {
                 _user = connection.Query<user>(
                     "SELECT * FROM user WHERE username=@username",
-                    new {username}).Single();
+                    new { username }).Single();
                 if (passwordhasher.VerifyHashedPassword(null, _user.password, password) ==
                     PasswordVerificationResult.Success)
                 {
@@ -103,28 +103,28 @@ namespace ProjectComicBook.Models
             return new user();
 
         }
-        
+
         public IEnumerable<object> ViewCollection(int userID)
         {
             using var connection = Connect();
             return connection.Query(
                 "SELECT collectioncomicbook.userID, collectioncomicbook.comicbookID, comicbook.title, comicbook.cover FROM collectioncomicbook INNER JOIN comicbook ON collectioncomicbook.comicbookID=comicbook.comicbookID WHERE collectioncomicbook.userID=@userID",
-                new {userID});
+                new { userID });
         }
 
         public void AddToCollection(int comicbookID, int userID)
         {
             using var connection = Connect();
             connection.Execute("INSERT INTO collectioncomicbook (comicbookID, userID) values (@comicbookID, @userID)"
-                , new {comicbookID, userID});
+                , new { comicbookID, userID });
         }
-        
+
         public IEnumerable<object> RemoveFromCollection(int comicbookID, int userID)
         {
             using var connection = Connect();
             return connection.Query(
                 "DELETE FROM collectioncomicbook WHERE comicbookID = @comicbookID AND userID = @userID",
-                new {comicbookID, userID});
+                new { comicbookID, userID });
         }
 
         //public void CollectionCheck(int comicbookID, int userID)

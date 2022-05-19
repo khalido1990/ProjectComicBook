@@ -11,7 +11,7 @@ namespace ProjectComicBook.Pages
         private readonly ComicRepository _comicRepository = new ComicRepository();
         public void OnGet()
         {
-            
+
         }
         public RedirectToPageResult OnPostAddComic()
         {

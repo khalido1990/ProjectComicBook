@@ -28,7 +28,7 @@ namespace ProjectComicBook.Pages
             {
                 Console.WriteLine(yeet);
             }
-            
+
         }
 
         public RedirectToPageResult OnPostRemoveFromCollection()

@@ -10,7 +10,7 @@ namespace ProjectComicBook.Pages
         private readonly AuthorRepository _authorRepository = new AuthorRepository();
         public void OnGet()
         {
-            
+
         }
 
         public RedirectToPageResult OnPostAddAuthor()

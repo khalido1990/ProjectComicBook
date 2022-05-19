@@ -8,15 +8,15 @@ namespace ProjectComicBook.Pages
 {
     public class SearchResult : PageModel
     {
-        [BindProperty (SupportsGet = true)]
-        public string Search {get;set;}
-    
+        [BindProperty(SupportsGet = true)]
+        public string Search { get; set; }
+
         public List<ComicBook> comics { get; set; }
 
         public IActionResult OnGet(string Search)
         {
             var comic = new ComicRepository();
-            comics = comic.Search(Search); 
+            comics = comic.Search(Search);
             return Page();
         }
     }
