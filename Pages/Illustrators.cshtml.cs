@@ -11,10 +11,10 @@ namespace ProjectComicBook.Pages
 
         public void OnGet()
         {
-            
+
         }
-        
-        
+
+
         public RedirectToPageResult OnPostAddIllustrator()
         {
             var illustratorName = Request.Form["illustratorName"];

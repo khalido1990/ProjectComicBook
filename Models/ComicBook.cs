@@ -11,7 +11,7 @@ namespace ProjectComicBook.Models
         public string authorID { get; set; }
         public string isbn { get; set; }
         public string cover { get; set; }
-   
+
         public string description { get; set; }
         public int pages { get; set; }
         public DateTime releaseDate { get; set; }

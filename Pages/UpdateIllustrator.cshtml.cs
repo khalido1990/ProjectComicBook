@@ -15,13 +15,13 @@ namespace ProjectComicBook.Pages
         {
             Illustrators = illustrators;
         }
-        public IEnumerable<dynamic> Illustrators{ get; set; }
+        public IEnumerable<dynamic> Illustrators { get; set; }
 
         public void OnGet()
         {
             Illustrators = new IllustratorRepository().GetAllIllustrators();
         }
-    
+
         public RedirectToPageResult OnPostDeleteIllustrator()
         {
             string illustratorIDString = Request.Form["del-button"];
@@ -29,7 +29,7 @@ namespace ProjectComicBook.Pages
             _illustratorRepository.DeleteIllustrator(illustratorID);
             return RedirectToPage("./updateIllustrator");
         }
-    
+
         public RedirectToPageResult OnPostUpdateIllustrator()
         {
             string illustratorName = Request.Form["illustratorName"];

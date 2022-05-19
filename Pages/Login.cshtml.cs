@@ -13,7 +13,7 @@ using ProjectComicBook.Pages.Shared;
 
 namespace ProjectComicBook.Pages
 {
-    
+
     public class user
     {
         public int userID { get; set; }
@@ -25,7 +25,7 @@ namespace ProjectComicBook.Pages
 
         public user()
         {
-            
+
         }
         public user(string userName, string password, bool keepLoggedIn)
         {
@@ -33,7 +33,7 @@ namespace ProjectComicBook.Pages
             this.password = password;
             StayLoggedIn = keepLoggedIn;
         }
-        
+
     }
 
     public class MyCookie
@@ -48,7 +48,7 @@ namespace ProjectComicBook.Pages
             this.Password = Password;
             this.StayLoggedIn = StayLoggedIn;
         }
-        
+
     }
 
     //this class handles the login
@@ -58,7 +58,7 @@ namespace ProjectComicBook.Pages
         [BindProperty] [MaxLength(25)] public string Password { get; set; }
         [BindProperty] [MaxLength(25)] public string Name { get; set; }
 
-        
+
         [TempData] public bool KeepLoggedIn { get; set; }
         //An String that is used for the logging of messages
         public string ErrorMsg = "";
@@ -80,12 +80,12 @@ namespace ProjectComicBook.Pages
                     //hide logout
                     HideLogout = false;
                     //return the new user with the return value of the setup method
-                    return  _user = Setup();
+                    return _user = Setup();
                 }
 
                 //toggle the logout bool
                 HideLogout = true;
-                
+
                 return this._user;
             }
             set
@@ -98,8 +98,8 @@ namespace ProjectComicBook.Pages
                 }
             }
         }
-        
-        
+
+
         public DatabaseHandler Handler = new DatabaseHandler();
 
         //on the start displays initial messages
@@ -117,7 +117,7 @@ namespace ProjectComicBook.Pages
                 ErrorMsg = MakeMsg("Please Login");
             }
         }
-        
+
 
 
         public void OnPostLogout()
@@ -133,7 +133,7 @@ namespace ProjectComicBook.Pages
             {
                 me.StayLoggedIn = KeepLoggedIn;
                 //create a new My cookie class
-                MyCookie cookie= new MyCookie(UserName, Password, KeepLoggedIn);
+                MyCookie cookie = new MyCookie(UserName, Password, KeepLoggedIn);
                 //Delete Old cookie
                 DeleteCookies();
                 //create new cookie
@@ -143,13 +143,13 @@ namespace ProjectComicBook.Pages
                 HideLogout = false;
                 ErrorMsg = MakeMsg("Welcome" + " " + me.username);
                 Response.Cookies.Append("Global", JsonConvert.SerializeObject(me), new CookieOptions());
-                 
+
 
             }
             else
             {
                 ErrorMsg = MakeMsg("Wrong username or password");
-                
+
             }
         }
 
@@ -158,7 +158,7 @@ namespace ProjectComicBook.Pages
         {
             Response.Cookies.Delete("Login");
         }
-        
+
         //setup to extract an user from the database using a cookie
         public user Setup()
         {
@@ -187,8 +187,8 @@ namespace ProjectComicBook.Pages
         public string HashVal(string pass)
         {
             var passHasher = new PasswordHasher<string>();
-            return pass = passHasher.HashPassword(null,pass);
-            
+            return pass = passHasher.HashPassword(null, pass);
+
         }
         private string MakeMsg(string msg)
         {

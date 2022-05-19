@@ -11,7 +11,7 @@ namespace ProjectComicBook.Pages
     public class Register : PageModel
     {
         [BindProperty] [MaxLength(25)] public string UserName { get; set; }
-        
+
         [BindProperty] [MaxLength(25)] public string Password { get; set; }
         [BindProperty] [MaxLength(25)] public string Name { get; set; }
         [TempData, Required, Compare(nameof(Password))] public string Cpassword { get; set; }
@@ -26,7 +26,7 @@ namespace ProjectComicBook.Pages
         }
         public void OnPostReg(string UserName, string Password, string Name, string Cpassword)
         {
-            
+
             //check if the name or username is already in the database
             if (!Handler.CheckForDoubleEntry(UserName, Name))
             {
@@ -44,7 +44,7 @@ namespace ProjectComicBook.Pages
                 //display the text for the double entry method
                 ErrorMsg = MakeMsg(Handler.CheckForDoubleEntryName(Name) ? "Name already taken" : "Username already taken");
             }
-            
+
         }
 
         //fucntion that is used to turn the password into an hashvalue
@@ -53,8 +53,8 @@ namespace ProjectComicBook.Pages
             //create a new password hasher and configure it for strings
             var passHasher = new PasswordHasher<string>();
             //return the new hashed password
-            return pass = passHasher.HashPassword(null,pass);
-            
+            return pass = passHasher.HashPassword(null, pass);
+
         }
         //make a msg that will be displayed
         private string MakeMsg(string msg)

@@ -6,7 +6,7 @@ namespace ProjectComicBook.Pages
     {
         public void OnGet()
         {
-        
+
         }
     }
 }

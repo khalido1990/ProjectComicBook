@@ -12,16 +12,16 @@ namespace ProjectComicBook.Pages
         private readonly ILogger<IndexModel> _logger;
         private DatabaseHandler DatabaseHandler = new DatabaseHandler();
         public string LUserDisplayString = "Login";
-        
+
         public IndexModel(ILogger<IndexModel> logger, IEnumerable<ComicBook> comicBooks, IEnumerable<ComicBookAndAuthor> recentlyAddedComicBooks, IEnumerable<Author> authors, IEnumerable<Illustrator> illustrators)
         {
             _logger = logger;
             ComicBooks = comicBooks;
             RecentlyAddedComicBooks = recentlyAddedComicBooks;
         }
-        
-        public IEnumerable<ComicBook> ComicBooks{ get; set; }
-        public IEnumerable<ComicBookAndAuthor>? RecentlyAddedComicBooks{ get; set; }
+
+        public IEnumerable<ComicBook> ComicBooks { get; set; }
+        public IEnumerable<ComicBookAndAuthor>? RecentlyAddedComicBooks { get; set; }
 
         public void OnGet()
         {
